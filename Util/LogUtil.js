@@ -2,9 +2,15 @@
 const log4js=require('log4js')
 
 log4js.configure({
-    appenders: { cheese: { type: 'file', filename: './logs/logInfo.log' } },
-
-    categories: { default: { appenders: ['cheese'], level: 'info' } }
+    appenders: {
+        cheeseLogs: { type: 'file', filename: 'logs/logInfo.log' },
+        console: { type: 'console' }
+    },
+    categories: {
+        cheese: { appenders: ['cheeseLogs'], level: 'error' },
+        another: { appenders: ['console'], level: 'info' },
+        default: { appenders: ['console', 'cheeseLogs'], level: 'info' }
+    }
 });
 levels = {
     'trace': log4js.levels.TRACE,
